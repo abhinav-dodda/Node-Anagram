@@ -23,7 +23,7 @@ const router = Router();
  */
 router.get('/find', (req, res) => {
     const { word } = req.query;
-    if(!word) return res.status(400).send('Please provide a valid word')
+    if(!word) throw new Error('Please provide a valid word');
     res.status(200).send(wordList.filter(wordInList => isAnagram(word, wordInList) && wordInList !== word));
   });
   
@@ -45,8 +45,8 @@ router.get('/find', (req, res) => {
    */
 router.get('/compare', (req, res) => {
     const { word1, word2 } = req.query;
-    if(!word1) return res.status(400).send('Please provide a valid first word');
-    if(!word2) return res.status(400).send('Please provide a valid second word');
+    if(!word1) throw new Error('Please provide a valid first word');
+    if(!word2) throw new Error('Please provide a valid second word');
     res.status(200).send(isAnagram(word1, word2));
 });
 
@@ -99,13 +99,8 @@ router.get('/find-longest', (req, res) => {
     }
 
     if(currentLengthChecker === 0 && (Object.entries(anagramsMap).length === 0 && anagramsMap.constructor === Object)){
-        return res.status(400).send('No anagrams found')
+        throw new Error('No anagrams found');
     }
 });
-
-router.get('/test', (req, res)=>{
-    console.log(process.env.DICT)
-})
-
 
 module.exports = router;

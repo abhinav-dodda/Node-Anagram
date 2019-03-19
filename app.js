@@ -57,6 +57,8 @@ app.use('/', anagramRoutes);
 
 // error handling
 app.use(error);
-const server = app.listen(3001, () => console.log('App listening on port 3001'));
+if(process.env.NODE_ENV !== 'test'){
+  app.listen(3001, () => console.log('App listening on port 3001'));
+}
 
-module.exports = server;
+module.exports = app;
