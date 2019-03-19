@@ -2,9 +2,22 @@ require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const winston = require('winston');
 
+const error = require('./middlewares/error');
 const dictionaryRoutes = require('./routes/dictionaryRoutes');
 const anagramRoutes = require('./routes/anagramRoutes');
+
+
+winston.add(new winston.transports.File({ filename: 'error.log' }));
+
+process.on('uncaughtException', (err) => {
+  winston.error(err.stack, err);
+});
+
+process.on('unhandledRejection', (err) => {
+  throw err;
+});
 
 let wordListPath, wordList;
 
@@ -42,4 +55,8 @@ app.use(bodyParser.json());
 app.use('/dict', dictionaryRoutes);
 app.use('/', anagramRoutes);
 
-app.listen(3001, () => console.log('App listening on port 3001'));
+// error handling
+app.use(error);
+const server = app.listen(3001, () => console.log('App listening on port 3001'));
+
+module.exports = server;
