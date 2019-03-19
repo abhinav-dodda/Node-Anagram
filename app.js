@@ -26,7 +26,7 @@ let wordListPath, wordList;
    * You can choose French (fr)
    * Default is English
    * Set the symbols only in the .env file
-   * If you add any other file, please check the npm registry to see if the appropriate dictionary package exists
+   * If you add any other languages to file, please check the npm registry to see if the appropriate dictionary package exists
    * If so, install the package and add it
    * */ 
 switch(process.env.DICT){

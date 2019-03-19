@@ -10,52 +10,41 @@ The node-anagram API provides endpoints to work with Anagrams.
 
 For example, the word 'mary' is an anagram of 'army'.
 
-#### What is being requested
+#### Folder Structure
 
-Two endpoints need to be implemented as part of the assignment:
+The folder structure has been created to make the code as modular as possible.
+Here is a brief description of how the folder has been organised:
+middlewares - meant for all the middlewares. In this case, just contains the error middleware
+routes - contains the routes
+tests - all the test specs
+.env - environment vars
+.gitignore - standard gitignore file
+app.js - all middleware configuration + server
+error.log - logs the errors
+utils.js - contains the anagram function
 
-* GET /find - Given a single word, the endpoint should find all anagrams in the english dictionary. Note that a dependency called 'word-list' is being included as part of the setup and should be used as input for all supported words in the english language.
 
-* GET /compare - Given two words, the endpoint will determine if they are anagrams or not.
+#### Time/Space Complexity of Anagram Algorithm
+The run time complexity of the algorithm is O(nlogn) and space complexity is O(1). Alternative was to use a character map,
+which would have reduced the run time complexity to n, but would have increased the space complexity to n as well. Thus,
+I went with the first solution.
 
-See app.js for more details.
+#### Bonus points have been tackled
 
-#### Considerations
-
-You may restructure the code as you see fit (while respecting the provided rules), creating new files and directories as needed.
-The solution to the assignment can be sent back as a zip/tar.gz file.
-
-Things to take into account while implementing your solution:
-
-* Functionality: endpoints have to work as expected.
-* Design & code style: code structure, solution design, extensibility, easy to read & maintain, error handling.
-* Performance: code must have good performance (O(n), memory usage, etc). Multiple simultaneous calls per second should be expected for the API.
-* Test coverage: some level of unit testing is expected.
-
-#### Rules
-
-* **\* DO NOT PUBLISH YOUR CODE ON GITHUB OR FORK THIS PROJECT** ( or any other public platform )
-* Assignment should be handed over via a link to a cloud storage service  ( **Dropbox** / **Google Drive** / **WeTransfer** or something similar ).
-* The existing setup and endpoints should be used. Endpoints should respect existing naming and query param names.
-* The provided word-list (english dictionary) must be used for the english language and cannot be swapped for a different one.
-* When getting anagrams for a given word, the passed word should not be included as part of the result. Ie: for 'cat' it should return ['act'] and not ['cat', 'act'].
-* The API must be served @localhost:3001 when running npm start.
-
-#### Bonus points
-
-You can tackle as many bonus points as you want/can, they are not mandatory but welcomed.
-
-* Create a new endpoint called find-longest. The endpoint should return an array containing the longest anagrams for the given dictionary. Single dictionary words (no anagrams) should be excluded.
-* Add support for multiple dictionaries (english remains default if not specified).
-* Add support to list, add and remove words from the supported dictionaries.
+* Created a new endpoint called find-longest. 
+* Added support for multiple dictionaries (english remains default if not specified, and have added support for French).
+* Added support to list, add and remove words from the supported dictionaries. (Dictionary Routes)
 * Add support for phrases, not just single words. Ie: 'rail safety' -> ['fairy tales'].
 
 #### How to run
 
-`cd enterprise/node-anagram`
+`cd node-anagram`
 
 `nvm use`
 
 `npm install`
 
 `npm start`
+
+#### How to test
+`npm run test`

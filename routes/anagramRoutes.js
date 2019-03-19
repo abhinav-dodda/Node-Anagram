@@ -37,7 +37,7 @@ router.get('/find', (req, res) => {
    * @apiParam (query) {String} word2
    *
    * @apiExample {curl} Example usage:
-   *   curl -X GET -H "Content-Typerouterlication/json" http://localhost:3001/compare?word1=test&word2=tset
+   *   curl -X GET -H "Content-Type: application/json" http://localhost:3001/compare?word1=test&word2=tset
    *http://localhost:3001/compare?word1=test
    * @apiSuccessExample {json} Success-Response:
    *   HTTP/1.1 200 OK
@@ -52,20 +52,19 @@ router.get('/compare', (req, res) => {
 
   
   /**
-   * @api {get} /compare Compare Anagrams
-   * @apiName CompareAnagrams
-   * @apiDescription This endpoint will receive two words, and compare them to see if they are anagrams
+   * @api {get} /find-longest Find the longest anagram in the dictionary
+   * @apiName FindLongestAnagrams
+   * @apiDescription This endpoint will find the longest anagrams in the dictionary
    * @apiGroup Anagram
    *
-   * @apiParam (query) {String} word1
-   * @apiParam (query) {String} word2
    *
    * @apiExample {curl} Example usage:
-   *   curl -X GET -H "Content-Typerouterlication/json" http://localhost:3001/compare?word1=test&word2=tset
-   *http://localhost:3001/compare?word1=test
+   *   curl -X GET -H "Content-Type:application/json" http://localhost:3001/find-longest
    * @apiSuccessExample {json} Success-Response:
    *   HTTP/1.1 200 OK
-   *   false
+   *   [
+   *     [longest-anagram-word-1, longest-anagram-word-2]
+   *   ]
    */
 
 router.get('/find-longest', (req, res) => {
