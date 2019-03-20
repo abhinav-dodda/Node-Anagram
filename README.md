@@ -40,7 +40,7 @@ I went with the first solution.
 
 `cd node-anagram`
 
-`nvm use`
+`npm use`
 
 `npm install`
 
